@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "migrations:up",
+			"problemMatcher": [],
+			"label": "npm: migrations:up",
+			"detail": "prisma migrate dev --schema src/infra/database/schema.prisma"
+		}
+	]
+}
