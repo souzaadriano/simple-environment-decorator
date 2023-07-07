@@ -11,9 +11,8 @@ export class EnvironmentRepository implements IEnvironmentRepository {
     });
   }
 
-  get(key: string): string {
+  get(key: string): string | undefined {
     const value = process.env[key];
-    if (!value) throw EvalError(`variable ${key} not found`);
     return value;
   }
 }
