@@ -1,0 +1,16 @@
+{
+    "material-icon-theme.folders.associations": {
+        "adapters": "delta",
+        "factories": "constant",
+        "entities": "class",
+        "use-cases": "shader",
+        "migrations": "tools",
+        "queries": "hook",
+        "seeds": "update",
+        "engines": "unity"
+    },
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+}
