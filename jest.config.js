@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
-const { pathsToModuleNameMapper } = require('ts-jest/utils');
+const { pathsToModuleNameMapper } = require('ts-jest');
 const { compilerOptions } = require('./tsconfig.json');
 
 module.exports = {
@@ -141,10 +142,7 @@ module.exports = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  testMatch: [
-    '<rootDir>/src/core/**/useCases/**/*.spec.ts',
-    '<rootDir>/src/api/**/*.spec.ts',
-  ],
+  testMatch: ['<rootDir>/src/core/**/*.spec.ts', '<rootDir>/src/api/**/*.spec.ts'],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
