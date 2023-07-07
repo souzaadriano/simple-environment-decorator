@@ -1,6 +1,6 @@
-import { TYPE_ENUM } from '@/core/domain/type-enum';
 import { Singleton } from '@/helpers/singleton.decorator';
 import { IParser } from './parser.contract';
+import { TYPE_ENUM } from './type-enum';
 
 @Singleton
 export class Parser implements IParser {

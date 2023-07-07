@@ -1,3 +1,3 @@
 export interface IEnvironmentRepository {
-  get(key: string): string;
+  get(key: string): string | undefined;
 }
