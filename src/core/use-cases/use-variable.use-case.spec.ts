@@ -1,6 +1,7 @@
 import { EnvironmentRepositoryMock } from '../adapters/environment-repository/environment-repository.mock';
 import { MetadataRepositoryMock } from '../adapters/metadata-repository/metadata-repository.mock';
 import { Parser } from '../adapters/parser/parser.adapter';
+import { EnvironmentVariableNotDefined } from './use-variable.exception';
 import { UseVariableUseCase } from './use-variable.use-case';
 
 describe('use-variable.use-case', () => {
@@ -29,6 +30,18 @@ describe('use-variable.use-case', () => {
     expect(environmentRepository.get).toBeCalledTimes(1);
   });
 
+  it('shoud return variable parsed to string using default value', () => {
+    const self = {};
+    MetadataRepositoryMock.override('getType').return('String');
+    EnvironmentRepositoryMock.override('get').return(undefined);
+
+    const payload = sut.handle({ key: 'NAME', self, propertie: '', defaultValue: 'TESTE' });
+
+    expect(payload.value).toBe('TESTE');
+    expect(metadataRepository.getType).toBeCalledTimes(0);
+    expect(environmentRepository.get).toBeCalledTimes(1);
+  });
+
   it('shoud return variable parsed to number', () => {
     const self = {};
     MetadataRepositoryMock.override('getType').return('Number');
@@ -51,5 +64,13 @@ describe('use-variable.use-case', () => {
     expect(payload.value).toBe(true);
     expect(metadataRepository.getType).toBeCalledTimes(1);
     expect(environmentRepository.get).toBeCalledTimes(1);
+  });
+
+  it('shoud return variable parsed to boolean', () => {
+    const self = {};
+    MetadataRepositoryMock.override('getType').return('Boolean');
+    EnvironmentRepositoryMock.override('get').return(undefined);
+
+    expect(() => sut.handle({ key: '', self, propertie: '' })).toThrow(EnvironmentVariableNotDefined);
   });
 });
