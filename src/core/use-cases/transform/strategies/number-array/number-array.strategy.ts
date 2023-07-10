@@ -1,4 +1,4 @@
-import { ITransformStrategy } from './transform.strategy.contract';
+import { ITransformStrategy } from '../transform.strategy.contract';
 
 export class NumberArrayStrategy implements ITransformStrategy<number[]> {
   private readonly _splitBy: string;
@@ -15,6 +15,6 @@ export class NumberArrayStrategy implements ITransformStrategy<number[]> {
 
   private _validateIsNaN(value: number, originValue: string) {
     if (!Number.isNaN(value)) return;
-    throw new Error(`item ${originValue} is not a number`);
+    throw new TypeError(`item ${originValue} is not a number`);
   }
 }
