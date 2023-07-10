@@ -1,4 +1,4 @@
-import { ITransformStrategy } from './transform.strategy.contract';
+import { ITransformStrategy } from '../transform.strategy.contract';
 
 export class StringArrayStrategy implements ITransformStrategy<string[]> {
   private readonly _config: TStringArrayConfig;
@@ -10,8 +10,7 @@ export class StringArrayStrategy implements ITransformStrategy<string[]> {
   handle(value: string): string[] {
     const { accpetWhiteSpaces, splitBy } = this._config;
     const result = value.split(splitBy);
-
-    return accpetWhiteSpaces ? result.map((value) => value.trim()) : result;
+    return accpetWhiteSpaces ? result : result.map((value) => value.replaceAll(' ', ''));
   }
 }
 
