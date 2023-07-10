@@ -1,7 +1,7 @@
 import { IUseCase } from '../use-case.contract';
 import { ITransformStrategy } from './strategies/transform.strategy.contract';
 
-export class Transform implements IUseCase<Input, Output> {
+export class TransformUseCase implements IUseCase<Input, Output> {
   constructor(private readonly _dependencies: Dependencies) {}
 
   handle(input: Input): Output {
