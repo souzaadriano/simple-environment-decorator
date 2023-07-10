@@ -1,9 +1,9 @@
-import { IEnvironmentRepository } from '../adapters/environment-repository/environment-repository.contract';
-import { IMetadataRepository } from '../adapters/metadata-repository/metadata-repository.contract';
-import { IParser } from '../adapters/parser/parser.contract';
-import { TYPE_ENUM } from '../adapters/parser/type-enum';
-import { TParsedValue } from '../types/parsed-value.type';
-import { IUseCase } from './use-case.contract';
+import { IEnvironmentRepository } from '@/core/adapters/environment-repository/environment-repository.contract';
+import { IMetadataRepository } from '@/core/adapters/metadata-repository/metadata-repository.contract';
+import { IParser } from '@/core/adapters/parser/parser.contract';
+import { TYPE_ENUM } from '@/core/adapters/parser/type-enum';
+import { TParsedValue } from '@/core/types/parsed-value.type';
+import { IUseCase } from '../use-case.contract';
 import { EnvironmentVariableNotDefined } from './use-variable.exception';
 
 export class UseVariableUseCase implements IUseCase<Input, Output> {

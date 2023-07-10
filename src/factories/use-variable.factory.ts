@@ -1,7 +1,7 @@
 import { EnvironmentRepository } from '@/core/adapters/environment-repository/environment-repository.adapter';
 import { MetadataRepository } from '@/core/adapters/metadata-repository/metadata-repository.adapter';
 import { Parser } from '@/core/adapters/parser/parser.adapter';
-import { UseVariableUseCase } from '@/core/use-cases/use-variable.use-case';
+import { UseVariableUseCase } from '@/core/use-cases/use-variable/use-variable.use-case';
 
 export abstract class UseVariableFactory {
   private static _instance: UseVariableUseCase;
