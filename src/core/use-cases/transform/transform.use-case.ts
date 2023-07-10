@@ -11,6 +11,6 @@ export class TransformUseCase implements IUseCase<Input, Output> {
   }
 }
 
-type Input = { value: string; strategy: ITransformStrategy<any> };
+type Input = { value: string; strategy: ITransformStrategy };
 type Output = { value: any };
 type Dependencies = {};

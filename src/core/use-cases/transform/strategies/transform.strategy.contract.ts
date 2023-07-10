@@ -1,3 +1,3 @@
-export interface ITransformStrategy<T> {
+export interface ITransformStrategy<T = any> {
   handle(value: string): T;
 }
