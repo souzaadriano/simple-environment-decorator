@@ -1,5 +1,4 @@
-import { Environment } from '@/index';
-import { NumberArray, StringArray } from '@/presentation/transform.decorator';
+import { Environment, ToNumberArray, ToStringArray } from '@/index';
 
 export class Configuration {
   @Environment('TEXT')
@@ -11,11 +10,11 @@ export class Configuration {
   @Environment('BOOL')
   bool: boolean;
 
-  @StringArray({ splitBy: ',' })
+  @ToStringArray({ splitBy: ',' })
   @Environment('TEXT_ARR')
   textArray: string[];
 
-  @NumberArray({ splitBy: ',' })
+  @ToNumberArray({ splitBy: ',' })
   @Environment('NUM_ARR')
   numberArray: number[];
 }
