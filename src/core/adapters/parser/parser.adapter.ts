@@ -5,6 +5,8 @@ import { TYPE_ENUM } from './type-enum';
 @Singleton
 export class Parser implements IParser {
   handle(value: string, type: TYPE_ENUM.STRING): string;
+  handle(value: string, type: TYPE_ENUM.ARRAY): string;
+  handle(value: string, type: TYPE_ENUM.OBJECT): string;
   handle(value: string, type: TYPE_ENUM.NUMBER): number;
   handle(value: string, type: TYPE_ENUM.BOOLEAN): boolean;
   handle(value: string, type: TYPE_ENUM): string | number | boolean {
@@ -15,6 +17,10 @@ export class Parser implements IParser {
         return this._toNumber(value);
       case TYPE_ENUM.BOOLEAN:
         return this._toBoolean(value);
+      case TYPE_ENUM.ARRAY:
+        return value;
+      case TYPE_ENUM.OBJECT:
+        return value;
       default:
         throw new RangeError(`invalid environment type, expected a string, number, or boolean and geted ${type}`);
     }
