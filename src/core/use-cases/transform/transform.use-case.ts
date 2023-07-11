@@ -6,6 +6,7 @@ export class TransformUseCase implements IUseCase<Input, Output> {
 
   handle(input: Input): Output {
     const { strategy, value } = input;
+    if (typeof value !== 'string') return { value };
     const result = strategy.handle(value);
     return { value: result };
   }
