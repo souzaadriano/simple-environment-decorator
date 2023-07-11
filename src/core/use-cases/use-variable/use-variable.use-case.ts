@@ -20,7 +20,7 @@ export class UseVariableUseCase implements IUseCase<Input, Output> {
     const type = metadataRepository.getType(self, propertie);
     const value = parser.handle(raw, this._parseToTypeEnum(type));
 
-    return { value, writable: false };
+    return { value, writable: true };
   }
 
   private _parseToTypeEnum(type: string): TYPE_ENUM {
@@ -35,7 +35,7 @@ export class UseVariableUseCase implements IUseCase<Input, Output> {
 }
 
 type Input = { key: string; self: Object; propertie: string; defaultValue?: TParsedValue };
-type Output = { writable: false; value: TParsedValue };
+type Output = { writable: boolean; value: TParsedValue };
 type Dependencies = {
   environmentRepository: IEnvironmentRepository;
   metadataRepository: IMetadataRepository;
