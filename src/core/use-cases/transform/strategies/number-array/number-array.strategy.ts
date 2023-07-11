@@ -1,13 +1,15 @@
 import { ITransformStrategy } from '../transform.strategy.contract';
 
 export class NumberArrayStrategy implements ITransformStrategy<number[]> {
-  private readonly _splitBy: string;
-  constructor(splitBy?: string) {
-    this._splitBy = splitBy ?? ';';
+  private readonly _options: TNumberArrayOptions;
+
+  constructor(options: TNumberArrayOptions) {
+    this._options = options ?? { splitBy: ';' };
   }
 
   handle(value: string): number[] {
-    const splited = value.split(this._splitBy);
+    const { splitBy } = this._options;
+    const splited = value.split(splitBy);
     const result = splited.map((item) => Number(item.trim()));
     result.forEach((item, idx) => this._validateIsNaN(item, splited[idx]));
     return result;
@@ -18,3 +20,7 @@ export class NumberArrayStrategy implements ITransformStrategy<number[]> {
     throw new TypeError(`item ${originValue} is not a number`);
   }
 }
+
+export type TNumberArrayOptions = {
+  splitBy: string;
+};
