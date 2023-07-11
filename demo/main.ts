@@ -7,6 +7,8 @@ function main() {
     bool: config.bool,
     num: config.num,
     text: config.text,
+    textArr: config.textArray,
+    numArr: config.numberArray,
   });
 }
 
