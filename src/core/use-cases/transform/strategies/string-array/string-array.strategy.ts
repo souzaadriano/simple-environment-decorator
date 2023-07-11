@@ -14,7 +14,7 @@ export class StringArrayStrategy implements ITransformStrategy<string[]> {
   }
 }
 
-type TStringArrayConfig = {
+export type TStringArrayConfig = {
   splitBy: string;
   accpetWhiteSpaces?: boolean;
 };
