@@ -1,1 +1,1 @@
-export type TParsedValue = string | number | boolean;
+export type TParsedValue = any;
