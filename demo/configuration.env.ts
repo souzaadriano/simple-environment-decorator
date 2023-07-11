@@ -1,4 +1,4 @@
-import { Environment } from '@/index';
+import { Environment, ToNumberArray, ToStringArray } from '@/index';
 
 export class Configuration {
   @Environment('TEXT')
@@ -9,4 +9,12 @@ export class Configuration {
 
   @Environment('BOOL')
   bool: boolean;
+
+  @ToStringArray({ splitBy: ',' })
+  @Environment('TEXT_ARR')
+  textArray: string[];
+
+  @ToNumberArray({ splitBy: ',' })
+  @Environment('NUM_ARR')
+  numberArray: number[];
 }

@@ -1,3 +1,5 @@
+import { ClassConstructor } from '../class-constructor.type';
+
 export class MockValueHelper {
   private _once = false;
   constructor(private readonly _mock: jest.Mock) {}
@@ -23,6 +25,15 @@ export class MockValueHelper {
   }
 
   implement(fn: (...parameters: any[]) => any): this {
+    this._once ? this._mock.mockImplementationOnce(fn) : this._mock.mockImplementation(fn);
+    return this;
+  }
+
+  throw<T extends {}, K>(ErrorClass: ClassConstructor<T, K>, params: K) {
+    const fn = () => {
+      throw new ErrorClass(params);
+    };
+
     this._once ? this._mock.mockImplementationOnce(fn) : this._mock.mockImplementation(fn);
     return this;
   }

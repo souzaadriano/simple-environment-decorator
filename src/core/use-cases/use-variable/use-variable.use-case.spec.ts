@@ -1,6 +1,6 @@
-import { EnvironmentRepositoryMock } from '../adapters/environment-repository/environment-repository.mock';
-import { MetadataRepositoryMock } from '../adapters/metadata-repository/metadata-repository.mock';
-import { Parser } from '../adapters/parser/parser.adapter';
+import { EnvironmentRepositoryMock } from '@/core/adapters/environment-repository/environment-repository.mock';
+import { MetadataRepositoryMock } from '@/core/adapters/metadata-repository/metadata-repository.mock';
+import { Parser } from '@/core/adapters/parser/parser.adapter';
 import { EnvironmentVariableNotDefined } from './use-variable.exception';
 import { UseVariableUseCase } from './use-variable.use-case';
 
