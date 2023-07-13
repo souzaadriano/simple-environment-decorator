@@ -5,8 +5,8 @@ describe('validate.use-case', () => {
   let sut: ValidateUseCase;
 
   const strategyHandler = jest.fn().mockImplementation((value: any, key: string, propertie: string) => {
-    if (value === 'test') return;
-    throw new ValidationException('invalid value');
+    if (value === 'test') return { status: true, message: 'success' };
+    return { status: false, message: 'failed because value is not a "test"' };
   });
 
   beforeEach(() => {
