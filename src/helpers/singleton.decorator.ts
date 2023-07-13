@@ -1,5 +1,9 @@
 const SINGLETON_KEY = Symbol();
 
+/**
+ * Decorator to create an singleton in whatever class
+ * @decorator
+ */
 export type Singleton<T extends new (...args: any[]) => any> = T & {
   [SINGLETON_KEY]: T extends new (...args: any[]) => infer I ? I : never;
 };

@@ -11,6 +11,10 @@ export abstract class DecoratorFactory {
   private static _validator = ValidatorFactory.instance();
   private static _useVariable = UseVariableFactory.instance();
 
+  /**
+   * Factory to create a transform decorator.
+   * @factory
+   */
   static transform<T, K>(Strategy: ClassConstructor<ITransformStrategy, K>) {
     return (config: K) => (self: any, propertie: string) => {
       const { value } = DecoratorFactory._transform.handle({
@@ -31,6 +35,10 @@ export abstract class DecoratorFactory {
     };
   }
 
+  /**
+   * Factory to create a validator decorator.
+   * @factory
+   */
   static validator<T, K>(Strategy: ClassConstructor<IValidateStrategy, K>) {
     return (config: K) => (self: any, propertie: string) => {
       const { key, value } = DecoratorFactory.propertieData(self, propertie);
