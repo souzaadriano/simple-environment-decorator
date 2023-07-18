@@ -1,9 +1,11 @@
-import { Environment, ToNumberArray, ToStringArray } from '@/index';
+import { Environment, Option, ToNumberArray, ToStringArray } from '@/index';
 
 export class Configuration {
+  @Option({ options: ['adriano'] })
   @Environment('TEXT')
   text: string;
 
+  @Option({ options: [5] })
   @Environment('NUM')
   num: number;
 

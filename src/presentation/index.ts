@@ -1,3 +1,4 @@
-export * from '@/core/use-cases/transform/strategies/transform.strategy.contract';
+export * from './decorator.factory';
 export * from './environment.decorator';
 export * from './transform.decorator';
+export * from './validate.decorator';
