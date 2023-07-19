@@ -23,15 +23,9 @@ export class PropertieMetadata {
   }
 
   static extract(self: any, propertie: string): PropertieMetadata {
-    const metaKey = PropertieMetadata._metaPropertieKey(propertie);
-    if (!self[metaKey]) throw new MetadataNotFoundException(propertie);
-    if (self[metaKey] instanceof PropertieMetadata) return self[metaKey];
-
-    throw new InvalidMetadataException(propertie);
-  }
-
-  private static _metaPropertieKey(propertie: string) {
-    return `__${propertie}`;
+    if (!self['__meta']) throw new MetadataNotFoundException(propertie);
+    if (!self['__meta'].has(propertie)) throw new InvalidMetadataException(propertie);
+    return self['__meta'].get(propertie);
   }
 
   get value() {

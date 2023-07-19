@@ -35,7 +35,13 @@ export abstract class DecoratorFactory {
       return (self: any, propertie: string) => {
         const propertieMeta = DecoratorFactory._useVariable.handle({ key, self, propertie, defaultValue });
         Object.defineProperty(self, propertie, propertieMeta.definition());
-        Object.defineProperty(self, `__${propertie}`, { value: propertieMeta, enumerable: false, writable: false });
+        self[`__meta`]
+          ? self[`__meta`].set(propertie, propertieMeta)
+          : Object.defineProperty(self, `__meta`, {
+              value: new Map<string, PropertieMetadata>([[propertie, propertieMeta]]),
+              enumerable: false,
+              writable: false,
+            });
       };
     };
   }
