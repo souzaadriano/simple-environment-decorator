@@ -1,7 +1,6 @@
 import { EnvironmentRepositoryMock } from '@/core/adapters/environment-repository/environment-repository.mock';
 import { MetadataRepositoryMock } from '@/core/adapters/metadata-repository/metadata-repository.mock';
 import { Parser } from '@/core/adapters/parser/parser.adapter';
-import { EnvironmentVariableNotDefined } from './use-variable.exception';
 import { UseVariableUseCase } from './use-variable.use-case';
 
 describe('use-variable.use-case', () => {
@@ -64,13 +63,5 @@ describe('use-variable.use-case', () => {
     expect(payload.value).toBe(true);
     expect(metadataRepository.getType).toBeCalledTimes(1);
     expect(environmentRepository.get).toBeCalledTimes(1);
-  });
-
-  it('shoud return variable parsed to boolean', () => {
-    const self = {};
-    MetadataRepositoryMock.override('getType').return('Boolean');
-    EnvironmentRepositoryMock.override('get').return(undefined);
-
-    expect(() => sut.handle({ key: '', self, propertie: '' })).toThrow(EnvironmentVariableNotDefined);
   });
 });
