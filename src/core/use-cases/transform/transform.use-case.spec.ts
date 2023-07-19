@@ -1,6 +1,6 @@
 import { Mock } from '@/helpers/mock/mock.factory';
-import { TransformUseCase } from './transform.use-case';
 import { ITransformStrategy } from './strategies';
+import { TransformUseCase } from './transform.use-case';
 
 const strategyMockImplementation = (value: string) => {
   return value.split(',');
@@ -17,7 +17,7 @@ describe('transform.use-case', () => {
 
   it('should transform variable into string array', () => {
     TransformStrategyMock.override('handle').implement(strategyMockImplementation);
-    const result = sut.handle({ value: 'a,b,c,d', strategy: strategyMock });
+    const result = sut.handle({ value: 'a,b,c,d', strategy: strategyMock, isDefault: false });
 
     expect(result.value).toEqual(['a', 'b', 'c', 'd']);
     expect(result.value).toHaveLength(4);
@@ -25,6 +25,6 @@ describe('transform.use-case', () => {
 
   it('should throw an error', () => {
     TransformStrategyMock.override('handle').throw(Error, 'test');
-    expect(() => sut.handle({ value: 'a,b,c,d', strategy: strategyMock })).toThrow(Error);
+    expect(() => sut.handle({ value: 'a,b,c,d', strategy: strategyMock, isDefault: false })).toThrow(Error);
   });
 });

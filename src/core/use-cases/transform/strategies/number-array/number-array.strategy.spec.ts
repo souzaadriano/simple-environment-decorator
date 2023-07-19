@@ -4,7 +4,7 @@ describe('number-array.strategy', () => {
   let sut: NumberArrayStrategy;
 
   it('should tranform to number array', () => {
-    sut = new NumberArrayStrategy(',');
+    sut = new NumberArrayStrategy({ splitBy: ',' });
     const result = sut.handle('1, 2, 3, 4');
 
     expect(result).toEqual([1, 2, 3, 4]);
@@ -12,7 +12,7 @@ describe('number-array.strategy', () => {
   });
 
   it('should throw an error because an item is NaN', () => {
-    sut = new NumberArrayStrategy(',');
+    sut = new NumberArrayStrategy({ splitBy: ',' });
     expect(() => sut.handle('1, 2, 3, a')).toThrow(TypeError);
   });
 });
