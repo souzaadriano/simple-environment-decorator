@@ -1,6 +1,6 @@
 import { ITransformStrategy } from '../transform.strategy.contract';
 
-export class StringArrayStrategy implements ITransformStrategy<string[]> {
+export class StringArrayStrategy implements ITransformStrategy<string, string[]> {
   private readonly _config: TStringArrayConfig;
 
   constructor(config: TStringArrayConfig) {

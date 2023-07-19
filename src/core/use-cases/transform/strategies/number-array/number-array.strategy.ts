@@ -1,6 +1,6 @@
 import { ITransformStrategy } from '../transform.strategy.contract';
 
-export class NumberArrayStrategy implements ITransformStrategy<number[]> {
+export class NumberArrayStrategy implements ITransformStrategy<string, number[]> {
   private readonly _options: TNumberArrayOptions;
 
   constructor(options: TNumberArrayOptions) {
