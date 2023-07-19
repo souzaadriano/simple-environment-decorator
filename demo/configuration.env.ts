@@ -1,6 +1,11 @@
 import { Environment, Option, ToNumberArray, ToStringArray } from '@/index';
+import { CustomTransfomerDecorator, CustomValidatorDecorator } from './custom-decorators';
 
 export class Configuration {
+  @CustomValidatorDecorator({ customOption: ['homol'] })
+  @Environment('NODE_ENV', 'local')
+  nodeEnv: string;
+
   @Option({ options: ['adriano'] })
   @Environment('TEXT')
   text: string;
@@ -19,4 +24,8 @@ export class Configuration {
   @ToNumberArray({ splitBy: ',' })
   @Environment('NUM_ARR')
   numberArray: number[];
+
+  @CustomTransfomerDecorator({ encodeType: 'base64' })
+  @Environment('ENCODED_NAME')
+  encodedName: string;
 }
