@@ -5,6 +5,7 @@ import { TYPE_ENUM } from '@/core/adapters/parser/type-enum';
 import { PropertieMetadata } from '@/core/domain/propertie-metadata.class';
 import { TParsedValue } from '@/core/types/parsed-value.type';
 import { IUseCase } from '../use-case.contract';
+import { InvalidTypeException } from './use-variable.exception';
 
 export class UseVariableUseCase implements IUseCase<Input, Output> {
   private readonly _validType = new Set<string>(Object.values(TYPE_ENUM));
@@ -19,14 +20,17 @@ export class UseVariableUseCase implements IUseCase<Input, Output> {
     if (!raw) return propertieMeta;
 
     const type = metadataRepository.getType(self, propertie);
-    const value = parser.handle(raw, this._parseToTypeEnum(type));
+    const value = parser.handle(raw, this._parseToTypeEnum(type, key, propertie));
     propertieMeta.addValue(value);
 
     return propertieMeta;
   }
 
-  private _parseToTypeEnum(type: string): TYPE_ENUM {
-    if (!this._validType.has(type)) throw new TypeError('');
+  private _parseToTypeEnum(type: string, key: string, propertie: string): TYPE_ENUM {
+    if (!this._validType.has(type)) {
+      throw new InvalidTypeException(type, key, propertie, Array.from(this._validType.values()));
+    }
+
     return type as TYPE_ENUM;
   }
 }

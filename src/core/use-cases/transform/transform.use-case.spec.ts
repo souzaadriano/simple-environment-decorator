@@ -23,6 +23,14 @@ describe('transform.use-case', () => {
     expect(result.value).toHaveLength(4);
   });
 
+  it('should not transform variable because is default is true', () => {
+    TransformStrategyMock.override('handle').implement(strategyMockImplementation);
+    const result = sut.handle({ value: ['a', 'b', 'c', 'd'], strategy: strategyMock, isDefault: true });
+
+    expect(result.value).toEqual(['a', 'b', 'c', 'd']);
+    expect(result.value).toHaveLength(4);
+  });
+
   it('should throw an error', () => {
     TransformStrategyMock.override('handle').throw(Error, 'test');
     expect(() => sut.handle({ value: 'a,b,c,d', strategy: strategyMock, isDefault: false })).toThrow(Error);

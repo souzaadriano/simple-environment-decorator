@@ -22,10 +22,17 @@ export class PropertieMetadata {
     this._isDefault = true;
   }
 
-  static extract(self: any, propertie: string): PropertieMetadata {
-    if (!self['__meta']) throw new MetadataNotFoundException(propertie);
-    if (!self['__meta'].has(propertie)) throw new InvalidMetadataException(propertie);
-    return self['__meta'].get(propertie);
+  static set(input: TSetMetadataParameters) {
+    const { target, metadata } = input;
+    if (PropertieMetadata._haveMetadata(target)) return PropertieMetadata._appendMeta(target, metadata);
+    const value = new Map<string, PropertieMetadata>([[metadata.name, metadata]]);
+    Object.defineProperty(target, '__meta', { value, enumerable: false, writable: false });
+  }
+
+  static get(target: any, propertie: string): PropertieMetadata {
+    if (!PropertieMetadata._haveMetadata(target)) throw new MetadataNotFoundException(propertie);
+    if (!target['__meta'].has(propertie)) throw new InvalidMetadataException(propertie);
+    return target['__meta'].get(propertie);
   }
 
   get value() {
@@ -67,11 +74,19 @@ export class PropertieMetadata {
     this._isDefault = false;
   }
 
-  private _getValue() {
+  private _getValue(): any {
     if (this._value) return this._value;
     if (this._defaultValue) return this._defaultValue;
 
     throw new EnvironmentVariableNotDefined(this._key, this.name);
+  }
+
+  private static _appendMeta(obj: TObjectWithMetadata, metadata: PropertieMetadata) {
+    obj.__meta.set(metadata.name, metadata);
+  }
+
+  private static _haveMetadata(target: any): boolean {
+    return target['__meta'] && target['__meta'] instanceof Map;
   }
 }
 
@@ -81,6 +96,8 @@ type TPropertieMetadataConstructor = {
   propertie: string;
 };
 
+type TSetMetadataParameters = { target: any; metadata: PropertieMetadata };
+
 type TTransformed = {
   status: boolean;
   name: string;
@@ -89,4 +106,8 @@ type TTransformed = {
 type TValidated = {
   status: boolean;
   validators: string[];
+};
+
+type TObjectWithMetadata = {
+  __meta: Map<string, PropertieMetadata>;
 };

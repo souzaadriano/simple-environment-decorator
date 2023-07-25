@@ -1,9 +1,9 @@
 import { DecoratorFactory } from '@/factories/decorator.factory';
 
 /**
- * Decorator to get environment variables
- * @decorator
- * @param {string} key environment variable name
- * @param {any | undefined} [defaultValue] (optional) default value in case not exists on environment variables
+ * Decorator to access environment variables in a class.
+ * @param {string} key - The key of the environment variable to be accessed.
+ * @param {TParsedValue} [defaultValue] - Default value to be used if the environment variable is not defined.
+ * @returns {PropertyDecorator} The decorator for the class property.
  */
 export const Environment = DecoratorFactory.environmentFactory();
