@@ -1,6 +1,7 @@
 import { EnvironmentRepositoryMock } from '@/core/adapters/environment-repository/environment-repository.mock';
 import { MetadataRepositoryMock } from '@/core/adapters/metadata-repository/metadata-repository.mock';
 import { Parser } from '@/core/adapters/parser/parser.adapter';
+import { InvalidTypeException } from './use-variable.exception';
 import { UseVariableUseCase } from './use-variable.use-case';
 
 describe('use-variable.use-case', () => {
@@ -63,5 +64,13 @@ describe('use-variable.use-case', () => {
     expect(payload.value).toBe(true);
     expect(metadataRepository.getType).toBeCalledTimes(1);
     expect(environmentRepository.get).toBeCalledTimes(1);
+  });
+
+  it('should throw an InvalidTypeException because is a invalid type', () => {
+    const self = {};
+    MetadataRepositoryMock.override('getType').return('Null');
+    EnvironmentRepositoryMock.override('get').return('TRUE');
+
+    expect(() => sut.handle({ key: '', self, propertie: '' })).toThrow(InvalidTypeException);
   });
 });
