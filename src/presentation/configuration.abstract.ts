@@ -1,4 +1,5 @@
 import { PropertieMetadata } from '@/core/domain/propertie-metadata.class';
+import { ExcludeFunctionPropertyNames } from '@/helpers/exclude-methods.type';
 
 export abstract class AbstractConfiguration {
   protected readonly __meta: Map<keyof ExcludeFunctionPropertyNames<this>, PropertieMetadata>;
@@ -18,10 +19,3 @@ export abstract class AbstractConfiguration {
     }, {} as any);
   }
 }
-
-type ExcludeFunctionPropertyNames<T> = Pick<
-  T,
-  {
-    [K in keyof T]: T[K] extends Function ? never : K;
-  }[keyof T]
->;
