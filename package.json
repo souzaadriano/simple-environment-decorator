@@ -18,10 +18,12 @@
     "url": "https://github.com/souzaadriano/simple-environment-decorator/issues"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
+    "clean": "rimraf dist",
+    "build": "yarn clean dist && tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
     "demo": "tsnd -r tsconfig-paths/register --transpile-only --ignore-watch --watch node_modules --respawn demo/main.ts",
     "commit": "cz",
-    "test": "jest"
+    "test": "jest",
+    "prepublish": "yarn test && yarn build"
   },
   "files": [
     "dist/**/*"
