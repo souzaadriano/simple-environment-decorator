@@ -1,6 +1,6 @@
 {
   "name": "environment-variables-decorator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple environment variable getter using decorators",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
