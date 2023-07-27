@@ -1,0 +1,22 @@
+name: check
+run-name: ${{ github.actor }} running test
+
+on:
+  pull_request:
+    branches: [development]
+    types:
+      - opened
+    paths:
+      - '**.ts'
+
+jobs:
+    check:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v1
+        - uses: actions/setup-node@v1
+          with:
+            node-version: 18
+        - run: yarn
+        - run: yarn prepublish
+
