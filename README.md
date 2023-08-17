@@ -1,4 +1,4 @@
-# Simple-Environment-Decorator
+# Environment Variables Decorator
 
 ## Description
 
@@ -26,7 +26,7 @@ NODE_ENV=local
 REPORT_APIS=http://report.com;http://report2.com;http://report3.com
 ```
 
-Voce pode criar um arquivo unico com todas as suas variveis, ou pode separar em varios arquivos de confirações especificos.
+You can create a single file with all your variables, or you can separate them into various specific configuration files.
 
 ## @Environment
 
@@ -36,7 +36,7 @@ Definition `@Environment(VariableName: string, DefaultValue: string)`
 // src/app.config.ts
 import { Environment } from 'environment-variables-decorator';
 
-// Caso voce queira instanciar em diferentes lugares, pode utilizar o decorator de singleton para criar uma instancia unica.
+// If you want to instantiate in different places, you can use the singleton decorator to create a unique instance.
 
 // @Singleton can be imported from 'environment-variables-decorator';
 class AppConfig {
@@ -69,8 +69,6 @@ const server = new Server({
 ```typescript
 // src/app.config.ts
 import { Environment, ToStringArray, ToNumberArray } from 'environment-variables-decorator';
-
-// Caso voce queira instanciar em diferentes lugares, pode utilizar o decorator de singleton para criar uma instancia unica.
 
 // @Singleton
 class AppConfig {
@@ -121,8 +119,6 @@ export const CustomTransfomerDecorator = factory.transform(CustomTransformer);
 ```typescript
 // src/app.config.ts
 import { Environment, Option } from 'environment-variables-decorator';
-
-// Caso voce queira instanciar em diferentes lugares, pode utilizar o decorator de singleton para criar uma instancia unica.
 
 // @Singleton
 class ValueConfig {
