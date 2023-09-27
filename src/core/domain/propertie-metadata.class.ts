@@ -75,7 +75,7 @@ export class PropertieMetadata {
   }
 
   private _getValue(): any {
-    if (this._value) return this._value;
+    if (this._value || this._value === 0) return this._value;
     if (this._defaultValue) return this._defaultValue;
 
     throw new EnvironmentVariableNotDefined(this._key, this.name);
