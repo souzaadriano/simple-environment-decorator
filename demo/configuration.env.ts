@@ -28,4 +28,7 @@ export class Configuration extends AbstractConfiguration {
   @CustomTransfomerDecorator({ encodeType: 'base64' })
   @Environment('ENCODED_NAME')
   encodedName: string;
+
+  @Environment('REDIS_DATABASE')
+  redisDatabase: number;
 }
